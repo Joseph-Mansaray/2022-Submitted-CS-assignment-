@@ -1,45 +1,86 @@
 {% extends "layout.html" %}
 
 {% block title %}
-Portfolio
+    Portfolio
 {% endblock %}
 
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-<header class="alert alert-primary border text-center" role="alert">
-  {{ message }}
-</header>
-{% endif %}
-{% endwith %}
-
 {% block main %}
+<h1>Portfolio</h1>
+    <table class="table table-striped text-left">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for portfolio in portfolios %}
+            <tr>
+                <td>
+                    <!-- symbol -->
+                    {{portfolio.symbol}}
+                </td>
+                <td>
+                    <!-- companyname -->
+                    {{portfolio.name}}
+                </td>
+                <td>
+                    <!-- shares -->
+                    {{portfolio.totalshares}}
+                </td>
+                <td>
+                    <!-- price -->
+                    {{portfolio.price}}
+                </td>
+                <td>
+                    <!-- shares times price -->
+                    {{portfolio.totals}}
+                </td>
+            </tr>
+        {% endfor %}
+            <tr>
+                <td>CASH</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{cash_before}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><strong>{{portfoliototal}}</strong></td>
+            </tr>
+        </tfoot>
+    </table>
 
-<table class="table table-striped">
-  <thead>
-    <th>Symbol</th>
-    <th>Name</th>
-    <th>Shares</th>
-    <th>Price</th>
-    <th>Total</th>
-  </thead>
-  <tbody>
-    {% for stock in stocks %}
-    <tr>
-      <td>{{stock.symbol}}</td>
-      <td>{{stock.name}}</td>
-      <td>{{stock.shares}}</td>
-      <td>{{stock.price | usd}}</td>
-      <td>{{stock.total | usd}}</td>
-    </tr>
-    {% endfor %}
-    <tr>
-      <td colspan="4">CASH</td>
-      <td>{{user_cash.cash | usd}}</td>
-    </tr>
-  <tfoot>
-    <td colspan="4"></td>
-    <td>{{total_cash | usd}}</td>
-  </tfoot>
-  </tbody>
-</table>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Quick Action</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>get symbol</p>
+        <p>let user choose buy or sell</p>
+        <p>let user choose how many shares by clicking</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">GO</button>
+    </div>
+    </div>
+</div>
+</div>
 {% endblock %}

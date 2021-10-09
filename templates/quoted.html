@@ -1,11 +1,10 @@
 {% extends "layout.html" %}
 
 {% block title %}
-Quote
+    Quoted
 {% endblock %}
 
 {% block main %}
-<div>
-    <p class="pt-5"> A share of {{name}} ({{symbol}}) costs {{price | usd}}</p>
-</div>
+    <h3>Quoted</h3>
+    <p>A share of {{ result['name'] }} ({{ result['symbol'] }}) costs {{ price }}</p>
 {% endblock %}
