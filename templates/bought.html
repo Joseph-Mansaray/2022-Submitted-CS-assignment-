@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Bought
+{% endblock %}
+
+{% block main %}
+    <h3>Bought</h3>
+    <p>You bought {{symbol}}, at price of {{price}} for total of {{shares}}, that totals together to {{total_purchase }}</p>
+    <p>You now have {{cash}} left to spend.</p>
+{% endblock %}

@@ -5,9 +5,10 @@
 {% endblock %}
 
 {% block main %}
+    <h1>Quote</h1>
     <form action="/quote" method="post">
         <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Symbol" type="text"/>
+            <input autocomplete="on" autofocus class="form-control" name="symbol" placeholder="Symbol (e.g. AAPL, TSLA)" type="text">
         </div>
         <button class="btn btn-primary" type="submit">Quote</button>
     </form>

@@ -5,13 +5,15 @@
 {% endblock %}
 
 {% block main %}
+    <h1>Buy</h1>
     <form action="/buy" method="post">
         <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Symbol" type="text"/>
+            <input autocomplete="on" autofocus class="form-control" name="symbol" placeholder="Symbol (e.g. AAPL, TSLA)" type="text">
+            <br>
+            <br>
+            <input autocomplete="on" autofocus class="form-control" name="shares" placeholder="Shares" type="number" min="1">
         </div>
-        <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="shares" placeholder="Shares" type="number" min="0"/>
-        </div>
+        
         <button class="btn btn-primary" type="submit">Buy</button>
     </form>
 {% endblock %}

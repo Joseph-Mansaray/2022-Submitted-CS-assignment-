@@ -1,32 +1,11 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Quoted
+Quote
 {% endblock %}
 
 {% block main %}
-<div class="row" >
-  <div id="quote-view" class="container">
-
-  </div>
+<div>
+    <p class="pt-5"> A share of {{name}} ({{symbol}}) costs {{price | usd}}</p>
 </div>
-{% endblock %}
-
-{% block js %}
-<script type="text/javascript">
-  $(document).ready(() => {
-    displayQuote("{{usd(quote.price)}}", "{{quote.symbol}}")
-  })
-  const displayQuote = (price, symbol) => {
-    template = quoteTemplate(price, symbol)
-    $('#quote-view').html(template)
-  }
-  const quoteTemplate = (price, symbol) => (
-  `
-  <div class="well">
-    Price: ${price} - Symbol: ${symbol}
-  </div>
-  `
-  )
-</script>
 {% endblock %}

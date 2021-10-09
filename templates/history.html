@@ -1,31 +1,44 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    history
+    History
 {% endblock %}
 
 {% block main %}
-        <table class="table table-striped">
+    <h1>History</h1>
+
+    <table class="table table-striped text-left">
         <thead>
             <tr>
                 <th>Symbol</th>
                 <th>Shares</th>
                 <th>Price</th>
-                <th>Transacted</th>
+                <th>Transacted on</th>
             </tr>
         </thead>
         <tbody>
-            {% for row in history %}
-            <tr>
-            {% for i in row %}
-                {% if i != "userId" %}
-                    <td>{{row[i]}} </td>
-                {% endif %}
 
-            {% endfor %}
+            {% for row in rows %}
+            <tr>
+                <td>
+                    <!-- symbol -->
+                    {{row.symbol}}
+                </td>
+
+                <td>
+                    <!-- shares bought or sold-->
+                    {{row.shares}}
+                </td>
+                <td>
+                    <!-- price at time of activity-->
+                    {{row.price | usd}}
+                </td>
+                <td>
+                    <!-- date time of activity -->
+                    {{row.date_time}}
+                </td>
             </tr>
             {% endfor %}
-
         </tbody>
     </table>
 {% endblock %}
