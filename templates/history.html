@@ -1,27 +1,28 @@
 {% extends "layout.html" %}
 
 {% block title %}
-History
+    Portfolio
 {% endblock %}
 
 {% block main %}
+    <table>
+        <tr>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Transacted</th>
+        </tr>
 
-<table class="table table-striped">
-  <thead>
-    <th>Symbol</th>
-    <th>Shares</th>
-    <th>Price</th>
-    <th>Transacted</th>
-  </thead>
-  <tbody>
-    {% for stock in stocks %}
-    <tr>
-      <td>{{stock.symbol}}</td>
-      <td>{{stock.shares}}</td>
-      <td>{{stock.price | usd}}</td>
-      <td>{{stock.date}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+        {% for row in rows %}
+            <tr>
+                <td>{{ row["symbol"] }}</td>
+                <td>{{ row["shares"] }}</td>
+                <td>{{ usd(row["price"]) }}</td>
+                <td>{{ usd(row["shares"]*row["price"]*-1) }}</td>
+                <td>{{ row["timestamp"] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
 {% endblock %}

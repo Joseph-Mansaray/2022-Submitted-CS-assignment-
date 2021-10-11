@@ -11,7 +11,6 @@ def apology(message, code=400):
     def escape(s):
         """
         Escape special characters.
-
         https://github.com/jacebrowning/memegen#special-characters
         """
         for old, new in [("-", "--"), (" ", "-"), ("_", "__"), ("?", "~q"),
@@ -24,7 +23,6 @@ def apology(message, code=400):
 def login_required(f):
     """
     Decorate routes to require login.
-
     https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/
     """
     @wraps(f)

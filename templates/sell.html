@@ -5,20 +5,20 @@
 {% endblock %}
 
 {% block main %}
-    <h1>Sell</h1>
     <form action="/sell" method="post">
         <div class="form-group">
-            <select class="form-control" name="symbol">
-                <option disabled selected value>Symbol</option>
-                {% for symbolown in symbolowns_list %}
-                <option>{{symbolown}}</option>
-                {% endfor %}
+            <select name="symbol" id="symbols" style="width: 16pc;" autocomplete="--" autofocus class="form-control" type="text">
+                <option value="" disabled selected>--</option>
+            {% for row in rows %}
+                {% if row["round(SUM(shares), 2)"] != 0 %}
+                    <option value="{{ row["symbol"] }}">{{ row["symbol"] }}</option>
+                {% endif %}
+            {% endfor %}
             </select>
-            <br>
-            <br>
-            <input autocomplete="on" class="form-control" name="shares" placeholder="Shares" type="number" min="1">
         </div>
-        
-        <button class="btn btn-primary" type="submit">Sell</button>
+        <div class="form-group">
+            <input style="width: 16pc;" autocomplete="off" class="form-control" name="shares" placeholder="Number of shares" type="number" min="0.01" step="0.01">
+        </div>
+        <button class="btn btn-primary" type="submit">Sell shares</button>
     </form>
 {% endblock %}

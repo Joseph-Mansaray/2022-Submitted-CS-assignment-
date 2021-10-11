@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <table>
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Shares</th>
+            <th>Current Price</th>
+            <th>Total</th>
+        </tr>
+        {% for row in rows %}
+            {% if row["round(SUM(shares), 2)"] != 0 %}
+            <tr>
+                <td>{{ row["symbol"] }}</td>
+                <td>{{ row["name"] }}</td>
+                <td>{{ row["round(SUM(shares), 2)"] }}</td>
+                <td>{{ usd(float(lookup(row["symbol"])["price"])) }}</td>
+                <td>{{ usd(float(lookup(row["symbol"])["price"])*row["round(SUM(shares), 2)"]) }}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+
+        <tr>
+            <td>CASH</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ cash }}</td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><strong>{{ combinedTotal }}</strong></td>
+        </tr>
+
+    </table>
+
+{% endblock %}

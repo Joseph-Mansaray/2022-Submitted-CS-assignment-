@@ -1,14 +1,13 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Quote
+    Log In
 {% endblock %}
 
 {% block main %}
-    <h1>Quote</h1>
     <form action="/quote" method="post">
         <div class="form-group">
-            <input autocomplete="on" autofocus class="form-control" name="symbol" placeholder="Symbol (e.g. AAPL, TSLA)" type="text">
+            <input style="width: 16pc;" autocomplete="off" autofocus class="form-control" name="quote" placeholder="Enter a stock symbol e.g. AAPL" type="text">
         </div>
         <button class="btn btn-primary" type="submit">Quote</button>
     </form>
