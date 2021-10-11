@@ -1,9 +1,11 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Log In
+Quote
 {% endblock %}
 
 {% block main %}
-    <p>A share of {{ companyName }} ({{ symbol }}) currently costs {{ price }}</p>
+<div>
+    <p class="pt-5"> A share of {{name}} ({{symbol}}) costs {{price | usd}}</p>
+</div>
 {% endblock %}
