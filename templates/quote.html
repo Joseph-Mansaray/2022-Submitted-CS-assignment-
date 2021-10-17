@@ -5,21 +5,10 @@
 {% endblock %}
 
 {% block main %}
-    <h2>Search symbol</h2>
-    <form class="search-form" action="/quote" method="post">
+    <form action="/quote" method="post">
         <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Symbol" type="text">
+            <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="symbol" type="text"/>
         </div>
-        <button class="btn btn-primary" type="submit">Search</button>
+        <button class="btn btn-primary" type="submit">Get Quote</button>
     </form>
-    <br />
-    <div class="result">
-        <h3>
-            {% if results %}
-                The price of {{ results["name"] }} ({{ results["symbol"] }}) is currently {{ results["price"] | usd }}.
-            {% endif %}
-        </h3>
-
-    </div>
-
 {% endblock %}

@@ -1,52 +1,48 @@
-% extends "layout.html" %}
+{% extends "layout.html" %}
 
 {% block title %}
-    Index
+    Portfolio
 {% endblock %}
 
 {% block main %}
-    <h2>Portfolio</h2>
-
     <table class="table table-striped">
-        <thead>
-             <tr>
-                <th>Symbol</th>
-                <th>Shares</th>
-                <th>Current price</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Cash</td>
-                <td></td>
-                <td></td>
-                <td>{{ balance | usd }}</td>
-
-            </tr>
-            {% for asset in port %}
-                <tr>
-                    <td>{{ asset["symbol"] }}</td>
-                    <td>{{ asset["SUM(quantity)"] }}</td>
-                    <td>{{ prices[loop.index0] | usd }}</td>
-                    <td>{{ ((prices[loop.index0])*asset["SUM(quantity)"]) | usd }}</td>
-                </tr>
-            {% endfor %}
-
-            <tr>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-
-            <tr>
-                <td><b>Net total</b></td>
-                <td></td>
-                <td></td>
-                <td>{{ total_bal | usd }}</td>
-            </tr>
-        </tbody>
-    </table>
-
+  <thead>
+    <tr>
+      <th scope="col">Symbol</th>
+      <th scope="col">Name</th>
+      <th scope="col">Shares</th>
+      <th scope="col">Price</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for stock in stocks %}
+    <tr>
+      <th scope="row">{{ stock.symbol }}</th>
+      <td>{{ stock.name }}</td>
+      <td>{{ stock.shares }}</td>
+      <td>{{ stock.price }}</td>
+      <td>{{ stock.total }}</td>
+    </tr>
+    {% endfor %}
+    <thead>
+      <tr>
+        <th scope="col">CASH AVAILABLE</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="row">{{ cash_available }}</th>
+      </tr>
+    </thead>
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="row">{{ cash_total }}</th>
+      </tr>
+    </thead>
+  </tbody>
+</table>
 {% endblock %}
