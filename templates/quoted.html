@@ -1,20 +1,11 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Stock Quote
+Quote
 {% endblock %}
 
 {% block main %}
-    <div class="container">
-        <table class="table">
-            <tr>
-                <th>Stock Symbol</th>
-                <th>Share Price</th>
-            </tr>
-            <tr>
-                <td>{{ quote['symbol'] }}</td>
-                <td>{{ usd(quote['price']) }}</td>
-            </tr>
-        </table>
-    </div>
+<div>
+    <p class="pt-5"> A share of {{name}} ({{symbol}}) costs {{price | usd}}</p>
+</div>
 {% endblock %}

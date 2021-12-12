@@ -23,7 +23,7 @@ def apology(message, code=400):
 def login_required(f):
     """
     Decorate routes to require login.
-    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/
+    https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/
     """
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -39,7 +39,8 @@ def lookup(symbol):
     # Contact API
     try:
         api_key = os.environ.get("API_KEY")
-        response = requests.get(f"https://cloud-sse.iexapis.com/stable/stock/{urllib.parse.quote_plus(symbol)}/quote?token={api_key}")
+        url = f"https://cloud-sse.iexapis.com/stable/stock/{urllib.parse.quote_plus(symbol)}/quote?token={api_key}"
+        response = requests.get(url)
         response.raise_for_status()
     except requests.RequestException:
         return None
@@ -59,4 +60,3 @@ def lookup(symbol):
 def usd(value):
     """Format value as USD."""
     return f"${value:,.2f}"
-    
